@@ -18,17 +18,17 @@ Claude Code용 컨텍스트 엔지니어링 skill 플러그인.
 
 ## 설치
 
-### 로컬에서
-
-```
-/plugin marketplace add /path/to/context-skills
-/plugin install context-skills@context-skills
-```
-
 ### GitHub에서
 
 ```
-/plugin marketplace add zkfmapf123/context-skills
+/plugin marketplace add zkfmapf123/context_skills
+/plugin install context-skills@context-skills
+```
+
+### 로컬에서 (이 repo를 clone한 경우)
+
+```
+/plugin marketplace add <clone한-절대경로>
 /plugin install context-skills@context-skills
 ```
 
