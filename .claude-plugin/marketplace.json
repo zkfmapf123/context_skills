@@ -1,0 +1,15 @@
+{
+  "name": "context-skills",
+  "description": "Context engineering skills marketplace: context window vs disk placement discipline, supervisor loop orchestration",
+  "owner": {
+    "name": "zkfmapf123",
+    "email": "zkfmapf123@naver.com"
+  },
+  "plugins": [
+    {
+      "name": "context-skills",
+      "source": "./",
+      "description": "Context engineering discipline: what belongs in the context window vs on disk, plus supervisor loop orchestration for multi-session work"
+    }
+  ]
+}

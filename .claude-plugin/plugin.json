@@ -1,0 +1,22 @@
+{
+  "name": "context-skills",
+  "description": "Context engineering discipline: what belongs in the context window vs on disk, plus supervisor loop orchestration for multi-session work",
+  "version": "0.1.0",
+  "author": {
+    "name": "zkfmapf123",
+    "email": "zkfmapf123@naver.com"
+  },
+  "license": "MIT",
+  "keywords": [
+    "context-engineering",
+    "loop-engineering",
+    "context-window",
+    "state-management",
+    "multi-session",
+    "supervisor",
+    "sub-agent",
+    "orchestration",
+    "claude-code",
+    "skills"
+  ]
+}
