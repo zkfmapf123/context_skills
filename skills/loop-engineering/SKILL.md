@@ -80,7 +80,16 @@ supervisor **본인이** 상태를 기록한다. sub agent는 다른 sub agent�
 
 1. `tasks.json`의 해당 항목 `status`를 갱신 (다른 필드는 건드리지 않음)
 2. `.claude/state/progress.md`에 이번 사이클 요약 추가 (무엇을/왜/다음은)
-3. `git`에 **서술적 커밋 메시지**로 커밋
+3. **압축 검사** — 위 1·2를 반영한 **후의** 파일이 임계값을 넘었으면
+   이 자리에서 압축한다:
+   - `progress.md`가 **200줄 초과**: 최근 10사이클만 상세로 남기고,
+     더 오래된 사이클은 상단 `## 요약` 절에 **사이클당 한 줄**로 압축
+   - `tasks.json`의 `done` 항목이 **20개 초과**: `done` 항목 전부 삭제
+     (`pending`/`blocked`/`in_progress`만 남김. 방금 `done` 처리한 항목이
+     같이 지워져도 정상 — 완료 기록은 progress.md와 git에 있다)
+   - 잘려나간 상세는 git 커밋에 전부 있으므로 손실이 아니다.
+     별도 archive 파일은 만들지 않는다. 이력 조회는 `git log`.
+4. `git`에 **서술적 커밋 메시지**로 커밋
    (나쁜 변경을 되돌리고 작동하던 상태로 복구하기 위함)
 
 ## 반복 (자율 진행)
@@ -101,6 +110,8 @@ supervisor **본인이** 상태를 기록한다. sub agent는 다른 sub agent�
 - 검증 통과 전에는 `done` 금지.
 - 세션 종료 전 반드시 tasks/progress 갱신 + git 커밋.
 - 상태 기록은 supervisor의 책임 (sub agent 아님).
+- 상태 파일은 짧게 유지. 임계값(progress.md 200줄 / done 20개)을 넘으면
+  기록 단계에서 압축한다. 상세 이력은 git이 보존한다.
 
 ## CLAUDE.md 포인터 (skill이 직접 심는다)
 
