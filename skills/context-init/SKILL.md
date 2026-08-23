@@ -9,12 +9,20 @@ description: Use when setting up a project to use context-engineering and loop-e
 context-engineering·loop-engineering 규율을 상기하게 만든다.
 1회 실행용이며 멱등하다 — 여러 번 실행해도 안전하다.
 
+## 대상 파일
+
+**현재 프로젝트 루트의 `./CLAUDE.md`** (git 루트 기준, 예: `<프로젝트>/CLAUDE.md`).
+
+- `~/.claude/CLAUDE.md`는 **절대 수정 금지** — 전역 사용자 메모리라
+  모든 프로젝트에 영향을 준다
+- `./.claude/CLAUDE.md`도 아니다 — 프로젝트 루트 바로 아래의 CLAUDE.md다
+
 ## 절차
 
-1. 프로젝트 루트의 CLAUDE.md에서 `loop-engineering` 문자열을 검색한다
+1. 프로젝트 루트의 `./CLAUDE.md`에서 `loop-engineering` 문자열을 검색한다
    (파일이 없으면 "없음"으로 간주하고 3으로)
 2. **이미 있으면 아무것도 하지 않는다.** "이미 설정됨"이라고 보고하고 종료
-3. 없으면 아래 두 줄을 CLAUDE.md **끝에 추가**한다 (파일이 없으면 새로 생성).
+3. 없으면 아래 두 줄을 `./CLAUDE.md` **끝에 추가**한다 (파일이 없으면 새로 생성).
    기존 내용과의 사이에 빈 줄 하나를 두고, 파일 끝에 개행이 없으면 먼저 보정한다
 
 ```
@@ -36,6 +44,7 @@ context-engineering·loop-engineering 규율을 상기하게 만든다.
 
 | 실수 | 교정 |
 |---|---|
+| `~/.claude/CLAUDE.md`(전역)에 심음 | 프로젝트 루트 `./CLAUDE.md`가 대상. 전역 파일 수정 금지 |
 | 포인터가 이미 있는데 또 추가 | 검색 먼저. 중복이면 종료 |
 | 빈 tasks.json·progress.md 미리 생성 | 생성 금지. loop-engineering 몫 |
 | CLAUDE.md 전체를 재작성 | 끝에 두 줄 추가만 |
