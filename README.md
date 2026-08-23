@@ -33,7 +33,8 @@ Claude Code용 컨텍스트 엔지니어링 skill 플러그인.
 /context-init
 ```
 
-CLAUDE.md에 포인터 두 줄이 심어진다. CLAUDE.md는 매 세션 항상 로드되므로,
+프로젝트의 `.claude/CLAUDE.md`에 포인터 두 줄이 심어진다. 이 파일은
+매 세션 항상 로드되므로,
 이후 세션은 별도 요청 없이도 이 규율을 상기한다. 여러 번 실행해도 안전하다(멱등).
 
 ### 3. 그냥 작업 시킨다
@@ -46,7 +47,7 @@ loop-engineering이 자동으로 동작한다. 명시 호출도 가능:
 
 | Skill | 언제 동작하나 | 무엇을 하나 |
 |---|---|---|
-| **context-init** | `/context-init` 호출 시 (프로젝트마다 1회) | CLAUDE.md에 포인터를 심어 이후 세션이 규율을 자동 상기하게 만듦 |
+| **context-init** | `/context-init` 호출 시 (프로젝트마다 1회) | `.claude/CLAUDE.md`에 포인터를 심어 이후 세션이 규율을 자동 상기하게 만듦 |
 | **context-engineering** | 정보를 어디에 둘지 결정할 때 — CLAUDE.md가 비대해질 때, /clear 후 진행 상태가 유실될 때, sub agent 출력이 컨텍스트를 범람시킬 때 | 정보 수명에 따른 배치 기준 강제: 안정적 전역 맥락은 CLAUDE.md, 절차는 skill, 진행 상태는 `.claude/state/`, 이력은 git |
 | **loop-engineering** | 여러 세션에 걸친 장기·반복 작업을 오케스트레이션할 때 | supervisor 사이클 강제: 상태 파악 → 작업 하나 위임 → 검증 → 디스크 기록 + 커밋. `/clear` 후에도 무손실로 이어감 |
 
@@ -57,7 +58,7 @@ loop-engineering이 자동으로 동작한다. 명시 호출도 가능:
  └─ skill description만 모든 세션에 상주 (~100토큰, 본문은 0토큰)
 
 /context-init  (1회)
- └─ CLAUDE.md에 포인터 2줄 → 매 세션 규율 상기
+ └─ .claude/CLAUDE.md에 포인터 2줄 → 매 세션 규율 상기
 
 장기 작업 시작
  └─ loop-engineering 트리거
